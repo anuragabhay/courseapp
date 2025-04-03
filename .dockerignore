@@ -1,0 +1,28 @@
+# Ignore build artifacts
+build/
+
+# Ignore IDE configs
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+
+# Ignore environment/config files
+.env
+
+# Ignore Docker build files (optional, if not needed inside image)
+.dockerignore
+.gitignore
+Dockerfile
+docker-compose.yml
+
+# Ignore version control
+.git/

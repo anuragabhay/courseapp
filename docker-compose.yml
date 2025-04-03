@@ -1,0 +1,36 @@
+services:
+  mysql_container:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      # MYSQL_USER: ${MYSQL_USER}
+      # MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  coursedata:
+    build: .
+    container_name: coursedata_container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql_container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_container:3306/trip_data
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Parallax@123
+    networks:
+      - springboot-network
+
+networks:
+  springboot-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
