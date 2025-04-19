@@ -21,6 +21,8 @@ services:
       - "9191:8080"
     depends_on:
       - mysql_container
+    restart: on-failure
+
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql_container:3306/trip_data
       SPRING_DATASOURCE_USERNAME: root
